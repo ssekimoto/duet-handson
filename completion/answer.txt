@@ -1,0 +1,19 @@
+package main
+
+import (
+    "net/http"
+    "encoding/json"
+
+)
+
+func main() {
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    // Write your prompt here.
+    w.Header().Set("Content-Type", "application/json")
+    response := map[string]string{"message": "Hello, World!"}
+    json.NewEncoder(w).Encode(response)
+}
